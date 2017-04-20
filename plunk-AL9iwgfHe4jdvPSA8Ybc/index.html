@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div ng-app="product">
+      <div class="container" ng-controller="productController">
+        <table class="table">
+          <thead>
+            <tr>
+              <th ng-click="changeOrder('id')" ng-class="{dropup:order===''}">
+                    Account
+                                                                                                    <span ng-class="{orderColor:orderType==='id'}" class="caret"></span>
+              </th>
+              <th ng-click="changeOrder('avail_cash')" ng-class="{dropup:order===''}">
+                    Available Cash <br>
+                   <span class="zero"> Today's Change</span>
+                                                                                                    <span ng-class="{orderColor:orderType==='avail_cash'}" class="caret"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in productData |filter:{id:search} | orderBy:order+orderType | limitTo: limit as results" n="{{productData}}">
+              <td width="30%">
+                <span class="info">{{product.type}}-{{product.id}}</span>
+              </td>
+              <td width="30%">
+                    {{product.avail_cash}}                                                                                <br />
+                <span ng-class="{goup: product.changerate>0,godown:product.changerate<0,zero:product.changerate==0}">    {{product.changerate}}/{{product.changemount}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="info" ng-hide="results.length === productData.length" ng-click="limit = productData.length">
+                  <strong>show more...</strong>
+                </span>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+</html>

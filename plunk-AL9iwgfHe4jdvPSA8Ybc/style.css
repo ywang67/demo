@@ -1,0 +1,19 @@
+/* Styles go here */
+.info{
+    color: blue;
+}
+
+.container{
+    margin: 50px;
+}
+.orderColor{color:red;}
+
+.goup{
+    color: lawngreen;
+}
+.godown{
+    color: red;
+}
+.zero{
+    color: grey;
+}
