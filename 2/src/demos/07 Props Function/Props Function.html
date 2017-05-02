@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props Function</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+</body>
+<script type="text/babel">
+    var Team = React.createClass({
+        onHungry: function(name) {
+            alert(name + " is hungry");
+        },
+        render: function() {
+            return <div>Team onwer is: <People name={this.props.name} onHungry={this.onHungry.bind(this)}></People></div>;
+        }
+    });
+    var People = React.createClass({
+        render: function() {
+            return <span onClick={this.handleClick}>{this.props.name}</span>;
+        },
+        handleClick: function() {
+            this.props.onHungry(this.props.name);
+        }
+    });
+
+    var team = ReactDOM.render(
+            <Team name='Lucy' />,
+        document.getElementById('example')
+    );
+</script>
+</html>

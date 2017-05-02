@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List 1</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script type="text/babel">
+/*    import data from  './data'*/
+    /*var App = React.createClass({
+        render: function () {
+            const numbers = [1,2,3,4,5];
+            const listItems = numbers.map((number) =>
+                    <li key={number.toString()}>{number}</li>
+            );
+            return (<ul>
+                {listItems}
+            </ul>)
+        }
+    });*/
+    var ListItem = function (props) {
+        const value = props.value;
+        return <li>{props.value}</li>;
+    }
+    var NumberList = function (props) {
+        const numbers = props.numbers;
+        const listItems = numbers.map((number) =>
+                <ListItem key={number.toString()}
+                          value={number} />
+        )
+        return (
+                <ul>
+                    {listItems}
+                </ul>
+        );
+}
+const numbers = [1,2,3,4,5];
+ReactDOM.render(<NumberList numbers = {numbers} />, document.getElementById("container"));
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="../../css/main.css">
+</head>
+<script src="../../js/react.min.js"></script>
+<script src="../../js/react-dom.min.js"></script>
+<script src="../../js/browser.min.js"></script>
+<body>
+<div id="container"></div>
+</body>
+<script type="text/babel">
+    var Comment = React.createClass({
+        edit: function(){
+            alert('Editing is going');
+        },
+        remove: function(){
+            alert('Removing is going');
+        },
+        render: function(){
+            return (<div className="commentContainer">
+                <div className="commentText">{this.props.children}</div>
+                <button onClick={this.edit} className="button-primary">Edit</button>
+                <button onClick={this.remove} className="button-danger">Remove</button>
+            </div>)
+        }
+    });
+    ReactDOM.render(<div className="board">
+        <Comment>This is Allen!</Comment>
+        <Comment>He is stupid</Comment>
+        <Comment>He is Bean!</Comment>
+        <Comment>But he is working hard</Comment>
+        <Comment>He wants to be confirmed!</Comment>
+    </div>, document.getElementById('container'));
+</script>
+</html>

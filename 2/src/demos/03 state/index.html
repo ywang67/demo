@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-State</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script type="text/babel">
+    var CheckBox = React.createClass({
+
+        getInitialState: function () {
+          return {checked: true}
+        },
+        handleChanged: function () {
+          this.setState({checked: !this.state.checked})
+        },
+
+        render: function () {
+           var msg;
+           if(this.state.checked){
+               msg = 'checked';
+           }else{msg='unchecked'}
+            return (<div>
+                <input type="checkbox" onChange={this.handleChanged} defaultChecked={this.state.checked}/>
+                <h3>CheckBox is {msg}</h3>
+            </div>)
+       }
+    });
+
+    ReactDOM.render(<CheckBox />,document.getElementById('container'))
+
+
+
+</script>
+</html>

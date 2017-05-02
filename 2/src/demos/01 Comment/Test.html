@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - testFood</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script type="text/babel">
+    var Food = React.createClass({
+        render: function(){
+          return (
+                  <div>
+                      <h1>{this.props.name} likes to eat {this.props.favor}</h1>
+                  </div>
+          )
+        }
+    });
+    var  func = function () {
+        return "function passed"
+    }
+    ReactDOM.render(<div>
+        <Food name="Allen" favor="Shrimp" />
+        <Food name="Raymon" favor="Burger" />
+        <Food name="Stephen" favor="Crab" />
+        <Food name="Paul" favor="Fish" />
+        <Food name="Josh" favor="Tofu" />
+        <Food name= {func()} />
+    </div>,document.getElementById('container'));
+</script>
+</html>

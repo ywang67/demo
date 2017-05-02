@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body ng-app="app">
+<div ng-controller="ctrl">
+    <input ng-model="name"/></div><br>
+ReactJS <hello name="name"></hello>
+<hr>
+AngularJs: Hello, {{name}}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js">
+</script>
+<script src=" https://fb.me/react-0.14.6.js"></script>
+<script src="https://fb.me/react-dom-0.14.6.js"></script>
+<script src="../2/src/js/browser.min.js"></script>
+<script >
+    var HelloWorld = React.createClass({
+        displayName:'Hello World',
+        render:function(){
+            return React.DOM.div(null, "Hello, ",this.props.name1);
+        }
+    });
+</script>
+
+<script>
+    angular.module('app', []).controller( 'ctrl', ['$scope', function($scope){
+        $scope.name = 'World!';
+    }]).directive('hello', function(){
+        return{
+            restrict:'E',
+            scope:{
+                name:'='
+            },
+            link:function(scope, el, attrs){
+                scope.$watch('name', function(newValue, oldValue){
+                    var MyComponent = React.createFactory(HelloWorld);
+                    ReactDOM.render(
+                        MyComponent({name1:newValue}),
+                        el[0]
+                    );
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

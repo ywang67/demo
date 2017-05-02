@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body ng-app="app">
+<div ng-controller="ctrl">
+    <button ng-click="generate()">Generate</button>
+    <my-table grid="grid"></my-table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src=" https://fb.me/react-0.14.6.js"></script>
+<script src="https://fb.me/react-dom-0.14.6.js"></script>
+<script >
+    var GRID = React.createClass({displayName: 'GRID',
+        render: function() {
+            var grid = this.props.grid;
+            var rows = [];
+            for(var line = 0; line < grid; line++){
+                var length = Math.floor(Math.random() * 100 + 1);
+                var row =[];
+                for(var i =0; i< length; i++){
+                    row.push(React.DOM.td(null, i))
+                }
+                rows.push(
+                    React.DOM.tr( {},
+                        row
+                    ))
+            }
+            return (
+                React.DOM.table(null,
+                    React.DOM.tbody(null,rows)
+                )
+            );
+        }
+    });
+</script>
+<script>
+    angular.module('app', []).
+    controller('ctrl', ['$scope', function($scope){
+        $scope.grid = Math.floor(Math.random() * 1000) +1;
+        $scope.generate = function(){
+            $scope.grid = Math.floor(Math.random() * 1000) +1;
+        }
+    }]).directive('myTable', function(){
+        return{
+            restrict: 'E',
+            scope:{
+                grid: '='
+            },
+            link:function(scope, el, attrs){
+                scope.$watch('grid', function(newValue, oldValue){
+                    var MyComponent = React.createFactory(GRID);
+                    ReactDOM.render(
+                        MyComponent({grid:newValue}),
+                        el[0]
+                    );
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
