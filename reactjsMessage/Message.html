@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        .down_select{
+            height: 20px;
+            background: #fff;
+            width: 60px;
+            color: #000;
+        }
+        .handle {
+            width: 40px;
+            border:1px solid #ccc;
+            background: #fff;
+            position: absolute;
+            right: 10px;
+            top:1px;
+            text-align: center;
+        }
+
+        .handle a{
+            display: block;
+            text-decoration: none;
+        }
+        .list-group-item .centence{
+            padding: 0px 50px;
+        }
+        .user{
+            font-size: 22px;
+        }
+        .reply {
+            margin-top: 0px;
+        }
+        .list-group li {
+            transition: .5s;
+            overflow: hidden;
+        }
+    </style>
+
+    <script src="./js/react.min.js"></script>
+    <script src="./js/react-dom.min.js"></script>
+    <script src="./js/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.js"></script>
+
+</head>
+<body>
+<header class="site-header jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1  class="text-center">Welcome to chat</h1>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!--
+         组件划分：
+            总组件：MainComponent
+               消息组件：MesComponent
+               列表展示组件：ListComponent
+                  列表组件：ItemComponent
+
+         数据存储结构：
+            [
+               {
+                  userName:用户名
+                  content:留言内容
+                  _id:Date.now()
+               },{
+                  userName:用户名
+                  content:留言内容
+                  _id:Date.now()
+               }
+            ]
+      -->
+<div class="container" id="app"></div>
+
+<script type="text/babel">
+    var deleteItem = 'deleteItem';
+    var ItemComponent = React.createClass({
+        render: function () {
+            return (
+                    <li className="list-group-item">
+                        <div className="handle" >
+                            <a href="javascript:;" onClick={this.handleDelete.bind(this)}>delete</a>
+                        </div>
+                        <p className="user" ><span >{this.props.userName}:</span></p>
+                        <p className="centence">{this.props.content}</p>
+                    </li>
+            )
+        },
+        handleDelete: function () {
+            PubSub.publish(deleteItem, this.props._id);
+        }
+    });
+    var ListComponent = React.createClass({
+        render: function () {
+            var isNone = this.props.listArr.length >0? "none":"block";
+            return (
+                    <div className="col-md-8">
+                        <h3 className="reply">Reply：</h3>
+                        <h2 style={{display:isNone}}>No message</h2>
+                        <ul className="list-group">
+                            {
+                                this.props.listArr.map(function (item, index) {
+                                    return <ItemComponent key={index} {...item}/>
+                                })
+                            }
+                        </ul>
+                    </div>
+            )
+        }
+    });
+    var MesComponent = React.createClass({
+        render: function () {
+            return (
+                    <div className="col-md-4">
+                        <form className="form-horizontal">
+                            <div className="form-group">
+                                <label>Username</label>
+                                <input type="text"
+                                       className="form-control"
+                                       placeholder="Username"
+                                       ref="text_user"/>
+                            </div>
+                            <div className="form-group">
+                                <label>Message</label>
+                                <textarea className="form-control" rows="6"
+                                          placeholder="Message"
+                                          ref="text_content">
+
+                                    </textarea>
+                            </div>
+                            <div className="form-group">
+                                <div className="col-sm-offset-2 col-sm-10">
+                                    <button type="button"
+                                            className="btn btn-default pull-right"
+                                            onClick={this.handleAddItem}>Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            )
+        },
+        handleAddItem: function () {
+            var username = this.refs.text_user.value;
+            var content = this.refs.text_content.value;
+            this.props.addItem({
+                userName: username,
+                content:content,
+                _id: Date.now()
+            });
+            this.refs.text_user.value = "";
+            this.refs.text_content.value = "";
+        }
+    });
+
+    var MainComponent = React.createClass({
+        getInitialState: function () {
+            return{
+                listArr:this.props.listArr
+            }
+        },
+        componentDidMount: function () {        //组件渲染完成
+            PubSub.subscribe(deleteItem, function (evName, data) {
+                var newArr = this.state.listArr.filter(function (item) {
+                    return item._id!==data;
+                });
+                this.setState({
+                    listArr: newArr
+                });
+            }.bind(this));
+        },
+        addItem: function (data) {
+            this.state.listArr.push(data);
+            this.setState({
+                listArr: this.state.listArr
+            });
+        },
+        render: function () {
+            return (
+                    <div className="container">
+                        <MesComponent addItem={this.addItem}/>
+                        <ListComponent listArr={this.state.listArr} />
+                    </div>
+            )
+        }
+    });
+
+    var listArr = [
+        {
+            userName:"Paul",
+            content:"Welcome",
+            _id:Date.now()+1
+        },{
+            userName:"Angular",
+            content:"Hello",
+            _id:Date.now()
+        }
+    ]
+
+    ReactDOM.render(<MainComponent listArr={listArr}/>, document.getElementById('app'));
+</script>
+</body>
+</html>
