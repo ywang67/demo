@@ -1,0 +1,1 @@
+This demo is to combine AngularJS, ReactJS and D3 which is very similiar with what I did in my latest project.
