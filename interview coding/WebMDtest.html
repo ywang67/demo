@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var list = [
+        {user:"mike"},
+        {user:"mike"},
+        {user:"mike"},
+        {user:"Dave"},
+        {user:"Tom"},
+        {user:"Tom"},
+    ];
+
+/*Group by count ES5*/
+    function count(arr) {
+        counter ={};
+        arr.forEach(function (obj) {
+           /* var key = JSON.stringify(obj.user);*/
+            var key = obj.user;
+            counter[key] = (counter[key] || 0) +1;
+
+        })
+
+        return counter;
+    }
+
+    console.log(count(list));
+
+/*Remove Duplicate in JSON Array*/
+    var unique = function(arr){
+        counter = {};
+        var res =[];
+        arr.forEach(function (obj) {
+            var key = JSON.stringify(obj);
+
+            if(!counter[key]){
+                counter[key] =1;
+                res.push(obj);
+            }
+        })
+        return res;
+    }
+    console.log(JSON.stringify(unique(list)));
+
+    /*JS实现 Jquery method chain*/
+    var $ = {
+        set: function(callback){
+            object = callback;
+            return this;
+        },
+
+        get: function () {
+            console.log(object);
+        }
+    };
+
+    $.set("method chain").get();
+
+
+    /*JS 实现Inhertence*/
+    Person = function (name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.say = function () {
+        console.log("I am person");
+    }
+
+    Student = function (sid) {
+        this.sid = sid;
+    }
+
+    Student.prototype = new Person("larry", "21");
+    Student.prototype.constructor = Student();
+
+    var student = new Student("02");
+
+    console.log(student.sid);
+    console.log(student.name);
+    console.log(student.age);
+    console.log(student.say());
+
+
+</script>
+
+</body>
+</html>

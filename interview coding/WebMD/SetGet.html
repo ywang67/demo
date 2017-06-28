@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Get</title>
+</head>
+<body>
+
+</body>
+<script>
+    function getterSetter(){
+        var data;
+        return {
+            set: function (v) {
+                data = v;
+            },
+            get: function(){
+                return data;
+            }
+        }
+    }
+    var newInstance = new getterSetter();
+    newInstance.set('John');
+    console.log(newInstance.get());
+
+
+    // ES6 get and set
+    class Person {
+        constructor(name) {
+            this._name = name;
+        }
+
+        get name() {
+            return this._name.toUpperCase();
+        }
+
+        set name(newName) {
+            this._name = newName;   // validation could be checked here such as only allowing non numerical values
+        }
+
+        walk() {
+            console.log(this._name + ' is walking.');
+        }
+    }
+
+    let bob = new Person('Bob');
+    console.log(bob.name);  // Outputs 'BOB'
+
+
+
+
+</script>
+</html>

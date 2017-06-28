@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+</head>
+<body>
+<table>
+    <tbody>
+    <tr>
+        <td style="color: #ff00ff; background-color: #ffffff" >Q</td>
+        <td style="color: #442244; background-color: #442244" >Y</td>
+        <td style="color: #ffff00; background-color: #442244" >A</td>
+    </tr>
+    <tr>
+        <td style="color: #ffeefe; background-color: #990000" >Q</td>
+        <td style="color: #ffff00; background-color: #ff0" >M</td>
+        <td style="color: #000000; background-color: #ff7777" >O</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    function solution(){
+        var a = document.getElementsByTagName('td');
+        var arr = [];
+        for(i=0; i< a.length; i++){
+            if(a[i].style.color !== a[i].style.backgroundColor){
+                arr.push(a[i].innerHTML);
+            }
+        }
+        console.log(arr.join(""));
+
+    }
+    solution();
+</script>
+</html>

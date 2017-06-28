@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isolate scope 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    Controller: ename:{{emp1.ename}}, eno: {{emp1.eno}} </br>
+                ename:{{emp2.ename}}, eno: {{emp2.eno}} </br>
+    E-name: <input ng-model="emp1.ename"> </br>
+    E-name: <input ng-model="emp2.ename"> </br>
+    <div message employee="emp1"}></div>  </br>
+    <div message employee="emp2"></div> </br> <hr>
+    <div message2 o-emp="emp1"></div> </br> <hr>
+    <div message3 empinfo="info"></div>
+</div>
+</body>
+<script>
+    angular.module("myApp",[])
+        .directive('message', function(){
+            return{
+                restrict: 'A',
+                scope: {employee: "="},
+                template: '<div>ename: {{employee.ename}}, eno: {{employee.eno}} </br> E-name: <input ng-model="employee.ename"</div>'
+            }
+        })
+        .directive('message2', function(){
+            return{
+                restrict: 'A',
+                scope: {employee: "=oEmp"},
+                template: '<div>ename: {{employee.ename}}, eno: {{employee.eno}} </br> E-name: <input ng-model="employee.ename"</div>'
+            }
+        })
+        .directive('message3', function(){
+            return{
+                restrict: 'A',
+                scope:{ empinfo:"="},
+                template: '<br>employee information: {{empinfo}}</br> Emp-infor: <input ng-model="empinfo"></div>'
+            }
+        })
+        .controller('myCtrl',['$scope', function($scope){
+           $scope.emp1 ={ename:"jack", eno: "0001"};
+           $scope.emp2 ={ename:"wallace", eno:"0002"}
+           $scope.info = 'this is information';
+        }])
+</script>
+</html>

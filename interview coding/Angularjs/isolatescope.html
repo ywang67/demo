@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isolate scope</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    Controller: a = {{a}}, b={{b}}, c={{c}}, d={{d}} </br>
+    Directive1 Instance1 : <div message m={{a}} b={{b}}></div>
+</div>
+
+</body>
+<script>
+    var app = angular.module('myApp', []);
+    app.directive('message', function(){
+        return{
+            restrict: 'A',
+            scope:{
+                c:"@m",
+                b: "@"
+            },
+            template: '<div>a= {{c}}, b={{b}}</div>'+ '<button ng-click="doPlus()">Show</button>',
+            controller: function($scope,$element, $attrs){
+                $scope.doPlus = function(){
+                    var res = parseInt($scope.c)  + parseInt($scope.b);
+                    alert("The result is: " + res);
+                }
+            }
+        }
+
+    });
+    app.controller('myCtrl', ['$scope', function($scope){
+        $scope.a = 10;
+        $scope.b = 20;
+        $scope.c = 30;
+        $scope.d = 40;
+    }])
+</script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+/*		function Person(name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype.say = function () {
+			console.log('Person.prototype-say');
+		}
+
+		function Student(name, age, sid) {
+			Person.call(this,name,age);
+			this.sid = sid;
+		}
+
+		Student.prototype = new Person();
+		/!*Student.prototype = Object.create(Person.prototype);*!/
+		Student.prototype.constructor = Student;
+		Student.prototype.getTeacher = function(){
+       		console.log('Teacher John');
+    	}*/
+
+		function Person(name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype.say = function () {
+			
+			console.log("im person, my name is " + this.name);
+		}
+
+		function Student(sid) {
+			//Person.call(this, name ,age);
+			this.sid = sid;
+		}
+		Student.prototype = new Person('Jim',30);
+		Student.prototype.constructor = Student;
+		Student.prototype.getTeacher = function () {
+			console.log('I need a teacher and my student ID is ' + this.sid)
+		}
+
+        var jim = new Student('11');
+		console.log(jim.name);
+		console.log(jim.age);
+		console.log(jim.sid);
+		jim.say();
+		jim.getTeacher();
+
+
+    
+	</script>
+</body>
+</html>

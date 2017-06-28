@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+<script>
+
+/*    var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+    counter={};
+    names.map(function(e){
+        if(e in counter) {counter[e]++}
+        else {counter[e] =1}
+    })
+    console.log(counter);*/
+
+    /*var countedNames = names.reduce(function (allNames, name) {
+        if (name in allNames) {
+            allNames[name]++;
+        }
+        else {
+            allNames[name] = 1;
+        }
+        return allNames;
+    }, {});
+    console.log(countedNames);*/
+
+/*使用map进行groupbycount*/
+/*    var list = [
+        {user:"mike", age:19},
+        {user:"mike", age:21},
+        {user:"mike", age:19},
+        {user:"Dave", age:31},
+        {user:"Tom", age:18},
+        {user:"Tom", age:18},
+    ];
+
+    counterList={};
+    list.map(function (item, index) {
+        item.all = [list.user, list.age].join(',');
+        if(item.all in counterList){counterList[item.all] ++}
+        else{counterList[item.all] =1}
+    })
+
+    console.log(counterList);*/
+
+
+    /*用reduce来做*/
+/*    var countedList = list.reduce(function(allList, list){
+        allList[list] = (allList[list] +1) || 1;
+        return allList;
+    }, {});
+console.log(countedList);*/
+
+
+
+/*gourpybycount重复的只显示一次*/
+    var list = [
+        {user:"mike", age:19},
+        {user:"mike", age:21},
+        {user:"mike", age:19},
+        {user:"Dave", age:31},
+        {user:"Tom", age:18},
+        {user:"Tom", age:18},
+    ];
+
+
+/*    /!*ES6*!/
+    var unique = function(arr){
+        var m = new Set();
+        for(i in arr){
+            m.add('user:'+ arr[i].user + ', '+ 'age:' +arr[i].age);
+        }
+        console.log(m);
+    }
+
+    console.log(unique(list));*/
+
+
+/*/!*ES5 此处自己写了一个isEqual，ES6 need use reference lo-Dash或者写一个isEqual函数*!/
+
+function isEqual(a,b){
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    if(aProps.length != bProps.length){
+        return false;
+    }
+
+    for(var i=0; i< aProps.length; i++){
+        var propName = aProps[i];
+        if(a[propName] !== b[propName]){
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+function unique(arr) {
+    var cleaned = [];
+    arr.forEach(function(itm) {
+        var unique = true;
+        cleaned.forEach(function(itm2) {
+            if (isEqual(itm,itm2)) unique = false;
+            console.log()
+        });
+        if (unique)  cleaned.push(itm);
+    });
+    return cleaned;
+}
+
+console.log(JSON.stringify(unique(list), null,4));*/
+
+
+
+
+
+
+/*ES5 for 方法*/
+function unique(obj){
+    var uniques=[];
+    var stringify={};
+    for(var i=0;i<obj.length;i++){;
+        var keys=Object.keys(obj[i]);
+        console.log(keys);
+        var str='';
+        for(var j=0;j<keys.length;j++){
+            str+= keys[j];          // keys[j] 用来取object里面的key
+            str+= JSON.stringify(obj[i][keys[j]]);  //obj[i][keys[j]]是用来取key对应的value
+        }
+        if(!stringify.hasOwnProperty(str)){
+            uniques.push(obj[i]);
+            stringify[str]=true;
+        }
+    }
+    return uniques;
+}
+
+console.log(unique(list));
+
+
+
+
+/*Array.prototype.unique1 = function()
+{
+    var n = []; //一个新的临时数组
+    for(var i = 0; i < this.length; i++) //遍历当前数组
+    {
+        //如果当前数组的第i已经保存进了临时数组，那么跳过，
+        //否则把当前项push到临时数组里面
+        if (n.indexOf(this[i]) == -1) n.push(this[i]);
+    }
+    return n;
+}
+Array.prototype.unique2 = function()
+{
+    var n = {},r=[]; //n为hash表，r为临时数组
+    for(var i = 0; i < this.length; i++) //遍历当前数组
+    {
+        if (!n[this[i]]) //如果hash表中没有当前项
+        {
+            n[this[i]] = true; //存入hash表
+            r.push(this[i]); //把当前数组的当前项push到临时数组里面
+        }
+    }
+    return r;
+}
+Array.prototype.unique3 = function()
+{
+    var n = [this[0]]; //结果数组
+    for(var i = 1; i < this.length; i++) //从第二项开始遍历
+    {
+        //如果当前数组的第i项在当前数组中第一次出现的位置不是i，
+        //那么表示第i项是重复的，忽略掉。否则存入结果数组
+        if (this.indexOf(this[i]) == i) n.push(this[i]);
+    }
+    return n;
+}
+
+console.log(list.unique1());*/    /*适用于非对象元素的数组*/
+
+</script>
+
+</body>
+</html>

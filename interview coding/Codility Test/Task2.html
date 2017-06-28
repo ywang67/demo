@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+</head>
+<body>
+
+
+
+
+</body>
+<script>
+
+    function solution(A) {
+        if (A.length == 0) {
+            return -1;
+        }
+
+        var index = 0;
+        var result = 1;
+        while (A[index] !== -1 ) {
+            index = A[index];
+            result = result +1;
+            if (result > A.length) {
+                return -1;
+            }
+        }
+        return result;
+
+    }
+    var a = [1,2,3,-1,4];
+    var res =solution(a);
+    console.log(res);
+</script>
+</html>

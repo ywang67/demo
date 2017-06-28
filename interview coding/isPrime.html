@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    function isPrime(n) {
+        if(n < 2)   return false;
+        for(var i = 2; i<Math.sqrt(n); i ++) {
+            if(n % 2 == 0)  return false;
+        }
+        return true;
+    }
+    console.log(isPrime(111));
+</script>
+</body>
+</html>

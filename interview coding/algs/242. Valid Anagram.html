@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--Given two strings s and t, write a function to determine if t is an anagram of s.
+
+For example,
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false.-->
+<script>
+/*    var isAnagram = function(s, t) {
+        if(s.length !== t.length)   return false;
+        var helper = [];
+        for(var i = 0; i < 26; i ++) {
+            helper[i] = 0;
+        }
+        for(var i = 0; i < s.length; i ++) {
+            helper[s.charCodeAt(i)-97] ++;
+            helper[t.charCodeAt(i)-97]--;
+        }
+        for(var i = 0; i < helper.length;i++ ) {
+            if(helper[i] !== 0) return false;
+        }
+        return true;
+    };*/
+
+    var nums = [2,3,3];
+    nums.sort();
+    console.log(nums);
+    console.log(nums.length);
+    console.log(Math.ceil(nums.length/2));
+    console.log(nums[Math.ceil(nums.length/2)]);
+
+</script>
+</body>
+</html>

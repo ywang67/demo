@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+   var singleton = (function(){
+       var instance
+       function createInstance(){
+           Object = new Object({name: 'Stephen'})
+       }
+       return Object;
+       return{
+           getInstance: function(){
+               if(!instance){
+                   instance = createInstance();
+               }
+               return instance;
+           }
+       }
+   })()
+
+
+    function run(){
+       var instance1 = singleton.getInstance();
+       var instance2 = singleton.getInstance();
+
+       alert("Is this singleton?"  + instance1 === instance2);
+    }
+
+</script>
+
+</body>
+</html>

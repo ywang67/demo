@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StringWithNumber</title>
+</head>
+<body>
+
+<script>
+
+/*    function order(words){
+
+        return words.split(' ').sort(function(a, b){
+            return a.match(/\d/) - b.match(/\d/);
+        }).join(' ');
+    }*/
+
+    /*First version*/
+ function order(words){
+     var word = [];
+     var newword = [];
+     word = words.split(' ');
+     for(var i= 0; i<word.length; i++){
+         var b = word[i].replace(/[^0-9]/ig,'') -1;
+         newword[b] = word[i];
+     }
+     var res = newword.join(' ');
+     return res;
+ }
+
+
+
+/*    function order(words){
+        var word = [];
+        var newword = [];
+        word = words.split(" ");
+        var a = word.length;
+        /!*console.log(word);*!/
+        for(var i = 0; i< a; i++){
+            /!*console.log(word[i]);*!/
+            function getNum(text){
+                var value = text.replace(/[^0-9]/ig,"");
+                return value;
+            }
+            var b = getNum(word[i]) -1;
+            newword[b] = word[i];
+        }
+        var res = newword.join(' ');
+        return res;
+    }
+
+    console.log(order('is2 Thi1s T4est 3a'));*/
+
+</script>
+
+</body>
+</html>

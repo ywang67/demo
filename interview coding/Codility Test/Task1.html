@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+</head>
+<body>
+<ul>
+    <ol>
+        <ul>
+            <li>elem1</li>
+        </ul>
+    </ol>
+</ul>
+<ol>
+    <ul>
+        <ol>
+            <li>elem2</li>
+        </ol>
+    </ul>
+</ol>
+<ul>
+    <ol>
+        <ol>
+            <ul>
+                <ol>
+                    <li>elem3</li>
+                </ol>
+            </ul>
+        </ol>
+    </ol>
+</ul>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    (function solution() {
+        var maxDepth1 = -1;
+        var cDepth1 = -1;
+        var maxDepth2 = -1;
+        var cDepth2 = -1;
+        $("ul:not(:has(ul, ol))").each(function () {
+            cDepth1 = $(this).parents("ul").length +$(this).parents("ol").length;
+            if(cDepth1 > maxDepth1){
+                maxDepth1 = cDepth1;
+            }
+        })
+        $("ol:not(:has(ul, ol))").each(function () {
+            cDepth2 = $(this).parents("ul").length + $(this).parents("ol").length;
+            if(cDepth2 > maxDepth2){
+                maxDepth2 = cDepth2;
+            }
+        })
+        res = maxDepth1 > maxDepth2 ? maxDepth1 + 1 : maxDepth2 + 1;
+        console.log(res);
+        return res
+    })();
+</script>
+</html>

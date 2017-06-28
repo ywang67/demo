@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="main">
+
+    </div>
+
+    <script>
+        window.onload = function () {
+            var container = document.getElementById('main');
+
+            for(var i = 1; i <= 30 ; i ++) {
+
+                    var btn = document.createElement('button');
+                    var txt = document.createTextNode(i);
+                    btn.appendChild(txt);
+                    var br = document.createElement('br');
+                    btn.style.marginLeft='10px';
+                    btn.style.width='25px';
+                    container.appendChild(btn);
+                    if(i % 10 == 0) {
+                        container.appendChild(br);
+                    }
+
+                    (function(i) {
+                        btn.addEventListener('click', function () {
+                            alert(i);
+                        });
+                    })(i);
+
+                }
+
+        }
+
+
+    </script>
+</body>
+</html>

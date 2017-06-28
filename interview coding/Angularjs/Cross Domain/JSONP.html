@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="App">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var myApp = angular.module("App", []);
+        myApp.controller("test", function($scope, $http) {
+            // 回调函数用法
+                        myUrl = "http://datainfo.duapp.com/shopdata/getGoods.php?callback=JSON_CALLBACK";
+            $http.jsonp(myUrl).success(function(response) {
+                console.log(response);
+                $scope.myarr = response;
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div ng-controller="test">
+    <ul>
+        <li ng-repeat="data in myarr">
+            <!--scr里面的angularJS不可以这样写-->
+            <img src="{{data.goodsListImg}}" />
+            <p>名称：<span>{{data.goodsName}}</span></p>
+            <p>价格：<span>{{data.price|currency:"￥"}}</span></p>
+        </li>
+    </ul>
+</div>
+</body>

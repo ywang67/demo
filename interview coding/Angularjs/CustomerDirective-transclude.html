@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transclude</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div class="AAA">
+    <hero name="superman">Stuff inside the custom directive</hero>
+</div>
+</body>
+<script>
+    angular.module('myApp', []).directive('hero', function () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: { name:'@' },
+            template: '<div>' +
+            '<div>{{name}}</div><br>' +
+            '<div ng-transclude></div>' +
+            '</div>'
+        };
+    });
+</script>
+</html>

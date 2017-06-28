@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var list = [
+        {user:"mike", age:19},
+        {user:"mike", age:21},
+        {user:"mike", age:19},
+        {user:"Dave", age:31},
+        {user:"Tom", age:18},
+        {user:"Tom", age:18},
+    ];
+
+/*    var groupbycount = function(list){
+        counter = {};
+        for(var key in list){
+            var obj = list[key];
+            /!*counter[obj['user'&&'age']] = (counter[obj['user'&& 'age']] || 0) +1;*!/
+            counter[obj['user']+ ',' + obj['age']] = (counter[obj['user']+ ',' + obj['age']] || 0) +1;
+        }
+        return counter
+    }
+    console.log(groupbycount(list));*/
+
+    var count = function(arr){
+        counter = {};
+        arr.forEach(function(obj){
+            var key = JSON.stringify(obj);
+            counter[key] = (counter[key] || 0) +1;
+
+        })
+        return counter;
+
+    }
+
+    console.log(count(list));
+
+
+/*ES6 group by count*/
+    var data=[{user:'Tony'},{user:'Tony'},{user:'Tom'},{user:'Jim'},{user:'Tony'}];
+    function dis(data){
+        var m=new Map();
+        for(let i of data){
+            if(m.has(i.user)){
+                m.set(i.user, m.get(i.user)+1);
+            }else {
+                m.set(i.user, 1);
+            }
+        }
+        var result=[];
+        var c=0;
+        for(let [key,value] of m.entries()){
+            result[c]={};
+            result[c].user= key;
+            result[c].count=value;
+            c++;
+        }
+        return result;
+
+    };
+    console.log(dis(data));
+
+
+
+
+</script>
+</body>
+</html>

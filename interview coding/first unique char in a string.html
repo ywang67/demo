@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var firstUniqChar = function(s) {
+        var res = [];
+        for(var i = 0; i < 26; i++) {   //给空数组全置0
+            res[i] = 0;
+        }
+
+        for(var i = 0; i <s.length;i ++) {
+            res[s.charCodeAt(i)-97]++;
+        }
+        for(var i = 0; i < s.length; i++) {
+            if(res[s.charCodeAt(i)-97] == 1) {
+                return i;
+            }
+        }
+        return -1;
+    };
+   console.log(firstUniqChar('loveleetcode'));
+
+</script>
+</body>
+</html>

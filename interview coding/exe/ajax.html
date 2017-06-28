@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+
+    </script>
+</head>
+<body>
+<script>
+    $.ajax({
+        url: "script.php",
+        method: "POST",
+        data: { id : menuId },
+        dataType: "html"
+    })
+    .done(function( msg ) {
+         console.log(msg);
+    })
+    .fail(function( jqXHR, textStatus ) {
+        alert( "Request failed: " + textStatus );
+    });
+
+
+
+    $.ajax({
+        url:'',
+        method:'POST',
+        data:{id:xxx},
+        dataType:'json'
+    })
+    .done(function () {
+
+            })
+            .fail(function () {
+                
+            })
+</script>
+</body>
+</html>

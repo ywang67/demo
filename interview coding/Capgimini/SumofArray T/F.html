@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sum in Array R/F</title>
+</head>
+<body>
+
+</body>
+<script>
+    var func =function(arr){
+        var sum =[];
+        var n= 0;
+        for(var i=0; i<arr.length;i++){
+            for(var j=i+1; j<arr.length;j++){
+                sum[n] = arr[i]+arr[j];
+                if(arr.indexOf(sum[n])>=0){
+                    return true;
+                }
+                n++;
+            }
+        }
+        return sum;
+
+    }
+    var a = [1, 99];
+    console.log(func(a));
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--O(n^2)  	space:O(1)		best:O(n)-->
+<script>
+    function bubbleSort(arr) {
+        for(var i = 0; i < arr.length-1; i ++) {
+            for(var j = 0; j < arr.length-1-i; j ++) {
+                if(arr[j] > arr[j+1]) {
+                    var temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+    var arr = [4,3,5,2,1];
+    bubbleSort(arr);
+    console.log(arr);
+
+</script>
+</body>
+</html>

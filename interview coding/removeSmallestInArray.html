@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RemoveSmallestInArray</title>
+</head>
+<body>
+
+<script>
+
+    function removeSmallest(numbers) {
+        var min = numbers[0];
+        var len = numbers.length;
+        for(var i=0; i<len; i++){
+            if(min<numbers[i]){
+                min = numbers[i];
+                numbers.splice(i,1);
+            }
+        }
+        return numbers;
+    }
+
+    var a =[1,3,5,6,4,2];
+    console.log(removeSmallest(a));
+
+</script>
+
+
+</body>
+</html>

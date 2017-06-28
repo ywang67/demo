@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var list = [
+        {user:"mike"},
+        {user:"mike"},
+        {user:"mike"},
+        {user:"Dave"},
+        {user:"Tom"},
+        {user:"Tom"},
+    ];
+    var unique =function(arr){
+        cleaned ={};
+        var res =[];
+        arr.forEach(function(obj){
+            var key;
+            key = JSON.stringify(obj);
+            if(!cleaned[key]){
+                cleaned[key] = 1;
+                res.push(key);
+            }
+        })
+        return res;
+    }
+    console.log(unique(list));
+
+
+    var simplify=function(arr){
+        var dis={};
+        var record=[];
+        for(var i in arr){
+            if(typeof(dis[arr[i].user])==='undefined'){
+                record.push(arr[i].user);
+            }
+            dis[arr[i].user]='flag';
+
+        }
+        console.log(record);
+        console.log(dis);
+    }
+    var count=function(arr){
+        var dis={};
+        for(var i in arr){
+            if(typeof(dis[arr[i].user])==='undefined'){
+                dis[arr[i].user]=1;
+            }else{
+                dis[arr[i].user]++;
+            }
+        }
+        console.log(dis);
+    }
+    simplify(list);
+    count(list);
+
+    /*Inheritance*/
+
+    var person = function(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    person.prototype.do = function(){
+        console.log('person do eat!')
+    }
+
+    var student =function(id){
+        this.id = id;
+    }
+    student.prototype = new person('Allen', 21);
+    student.prototype.constructor = student;
+
+    var jim = new student('11');
+    console.log(jim.name);
+    console.log(jim.age);
+    console.log(jim.sid);
+    jim.do();
+
+
+    /*Singleton*/
+    var singleton = (function(){
+        var instance;
+        function createInstance(){
+            Object = new Object('I am the instance!');
+        }
+        return Object;
+
+        return {
+            getInstance: function(){
+                if(!instance){
+                    instance = createInstance();
+                }
+                return instance;
+            }
+        }
+    })();
+
+    function run(){
+        var instance1 = singleton.getInstance();
+        var instance2 = singleton.getInstance();
+        alert("Is it singlton? "  +  instance1 === instance2);
+    }
+
+
+</script>
+
+</body>
+</html>

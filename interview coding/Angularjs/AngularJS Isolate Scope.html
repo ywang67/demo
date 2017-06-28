@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Isolate Scope</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <kid done="logCore(core)"></kid>
+        <kid done="logCore(core)"></kid>
+        <kid done="logCore(core)"></kid>
+        <kid done="logCore(core)"></kid>
+        <kid done="logCore(core)"></kid>
+        <kid done="logCore(core)"></kid>
+
+    </div>
+</div>
+
+<script>
+    angular.module("myApp", [])
+
+        .directive("kid", function() {
+            return {
+                restrict: "E",
+                scope: {
+                    done: "&"
+                },
+                template: '<input type="text" ng-model="$parent.userInfo">' +
+                '{{$parent.userInfo}}' +
+                '<div class="button" ng-click="done({core:userInfo})">I\'m done</div>',
+            }
+        })
+
+        .controller('myCtrl',['$scope', function ($scope) {
+            $scope.logCore = function(core){
+                alert(core + 'is done!');
+            }
+        }])
+
+ /*       .controller("myCtrl", function($scope){
+            $scope.logCore = function(chore){
+                alert(chore + " is done!");
+            };
+        })
+
+        .directive("kid", function() {
+            return {
+                restrict: "E",
+                scope: {
+                    done: "&"
+                },
+                template: '<input type="text" ng-model="core">' +
+                '{{core}}' +
+                '<div class="button" ng-click="done({core: core})">I\'m done</div>'
+            };
+        });*/
+</script>
+
+
+</body>
+</html>

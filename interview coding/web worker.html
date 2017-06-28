@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Delivers Full Duplex Communication Model for the Web WebSockets deliver
+    communication between the client and server in both directions simultaneously.
+    Prior to WebSockets, developers had to find a way to simulate full duplex
+    communication by using a technique called polling and long-polling.
+    But these techniques do not actually provide true duplex communication.
+    In other words, data cannot be transferred between the server and client simultaneously.
+    HTTP was not designed for this. This is where HTML5 sockets come into play.</p>
+
+
+<script>
+    var w;
+
+    function startWorker() {
+        if(typeof(Worker) !== "undefined") {
+            if(typeof(w) == "undefined") {
+                w = new Worker("demo_workers.js");
+            }
+            w.onmessage = function(event) {
+                document.getElementById("result").innerHTML = event.data;
+            };
+        } else {
+            document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+        }
+    }
+
+    function stopWorker() {
+        w.terminate();
+        w = undefined;
+    }
+</script>
+
+</body>
+</html>

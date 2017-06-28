@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isolate scope3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+    Controller: a = {{a}}, b={{b}}
+    <button ng-click="doSum(a,b)">Sum</button></br>
+    Directive Instance1:    <div message ext-Sum = "doSum"></div>
+</div>
+</body>
+<script>
+    angular.module('myApp', [])
+        .controller('myCtrl', ['$scope', function ($scope) {
+            $scope.a = 10;
+            $scope.b = 20;
+            $scope.doSum = function(a,b){
+                var res = parseInt(a) + parseInt(b);
+                alert("Sum is : " +res);
+            }
+        }])
+        .directive('message', function(){
+            return{
+                restrict: 'A',
+                scope:{ extSum:"&"},
+                template: ' p = {{p}}, q={{q}}</br> p: <input ng-model="p">, q: <input ng-model="q"> </br> <button ng-click="extSum()(p,q)">Sum</button></div>'
+            }
+        })
+
+</script>
+</html>

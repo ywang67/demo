@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    var arr = [{name:"apple"},
+        {name: "pear"},
+        {name: "orange"},
+        {name: "pear"},
+        {name: "orange"},
+        {name: "pear"},
+        {name: "orange"}
+    ]
+
+    var getWordCnt =function (arr){
+        var obj = {};
+        arr.forEach(function(e){
+            var key = JSON.stringify(e);
+            obj[key] =(obj[key] || 0)+1
+        })
+        return obj;
+    }
+
+
+    var arr2 = ["apple","orange","apple","orange","pear","orange"];
+
+    function getWordCnt2(arr){
+        return arr.reduce(function(prev,next){
+            console.log(prev);
+            prev[next] = (prev[next] || 0) + 1;
+            return prev;
+        },{});
+    }
+
+    console.log(getWordCnt2(arr2));
+
+
+
+</script>
+
+</body>
+</html>

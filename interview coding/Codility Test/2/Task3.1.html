@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function test(A,K){
+        var len=A.length;
+        var temp=0;
+        var lenOfTable=Math.max.apply(null,A).toString().length;
+        var temp3="";
+        var i=0;
+        var temp1="+";
+        var content="|";
+        if(len<K){
+            while(temp<len){
+                var contentLen=A[temp].toString().length;
+                /*console.log(A[temp]);*/
+                while(contentLen<lenOfTable){
+                    content+=" ";
+                    contentLen++;
+                }
+                content+=A[temp];
+                content+="|";
+                var temp2=0;
+                while(temp2<lenOfTable){
+                    temp1+='-';
+                    temp2++;
+                }
+                temp1+="+";
+                temp2=0;
+
+
+                temp++;
+
+            }
+            console.log(temp1);
+            console.log(content);
+            console.log(temp1);
+        }else {
+            while (temp < K && temp < len) {
+                var contentLen = A[temp].toString().length;
+                /*console.log(A[temp]);*/
+                while (contentLen < lenOfTable) {
+                    content += " ";
+                    contentLen++;
+                }
+                content += A[temp];
+                content += "|";
+                var temp2 = 0;
+                while (temp2 < lenOfTable) {
+                    temp1 += '-';
+                    temp2++;
+                }
+                temp1 += "+";
+                temp2 = 0;
+
+                if ((temp + 1) == K) {
+                    temp3 = temp1;
+                    console.log(temp1);
+                    console.log(content);
+
+                }
+                if ((temp + 1) == len) {
+
+                    console.log(temp3);
+                    console.log(content);
+
+                }
+                if (temp + 1 == K && temp < len) {
+                    K = K + K;
+                    /* console.log(temp);
+                     console.log(K);*/
+                    temp1 = "+";
+                    content = "|";
+                }
+                temp++;
+
+            }
+            console.log(temp1);
+        }
+    }
+    var A=[4,35,80,123,12345,44,8,5];
+    var K=3;
+    test(A,K);
+</script>
+</html>

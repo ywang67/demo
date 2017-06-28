@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function list1(names){
+        return names.reduce(function(prev, current, index, array){
+            if (index === 0){
+                return current.name;
+            }
+            else if (index === array.length - 1){
+                return prev + ' & ' + current.name;
+            }
+            else {
+                return prev + ', ' + current.name;
+            }
+        }, '');
+    }
+
+
+
+
+
+    function list2(names){
+        var res = [];
+        var fin = [];
+        var str  ='';
+        var len = names.length;
+        if(len >=2){
+            for(var i =0; i<(len-2); i++){
+                res[i] = names[i].name;
+            }
+            names.reverse();
+            res.push(names[1].name);
+            str = res.join(', ');
+            str = str + ' & ' + names[0].name;
+            return str;
+        }
+        else{
+            if(names[0]){
+                return names[0].name;
+            }
+            else{return str;}
+
+        }
+
+    }
+
+    function list3(names) {
+        var xs = names.map(p => p.name)
+        var x = xs.pop()
+        return xs.length ? xs.join(", ") + " & " + x : x || ""
+    }
+
+    console.log(list1([{name: 'Bart'},{name: 'Lisa'},{name: 'Maggie'},{name: 'Homer'},{name: 'Marge'}]));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlaceOrderOfItems</title>
+</head>
+<body>
+<div>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ol>
+</div>
+</body>
+<script>
+    var li = document.getElementsByTagName('li');
+    var ol = document.getElementsByTagName('ol');
+    var arr = [];
+    for(var i =0 ; i<li.length;i++){
+        arr[i] = li[i];
+    }
+    arr.sort(function (li1,li2) {
+        var n1 = parseInt(li1.textContent);
+        var n2 = parseInt(li2.textContent);
+        return n2-n1;
+    })
+    for(var i=0; i<arr.length;i++){
+        ol[0].appendChild(arr[i]);
+    }
+</script>
+</html>

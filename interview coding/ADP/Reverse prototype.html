@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reverse Prototype</title>
+</head>
+<body>
+
+</body>
+<script>
+    String.prototype.reverse = function() {
+        if (this.length <= 1) return this;
+        else return this.slice(1).reverse() + this.slice(0,1);
+    };
+</script>
+</html>

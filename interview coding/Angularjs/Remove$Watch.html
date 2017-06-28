@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove $watch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="MainCtrl">
+<input type="text" ng-model="text" /> {{updated}} times updated.
+<button ng-click="stop()">Stop count</button>
+</body>
+<script>
+    var app = angular.module('app', []);
+
+    app.controller('MainCtrl', function($scope) {
+        $scope.updated = 0;
+
+        $scope.stop = function() {
+            textWatch();
+        };
+
+        var textWatch = $scope.$watch('text', function(newVal, oldVal) {
+            if (newVal === oldVal) { return; }
+            $scope.updated++;
+        });
+    });
+
+</script>
+
+</html>

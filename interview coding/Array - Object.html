@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // 将Object的属性输出成Array
+    function objOfPropertyToArr(object) {
+        var arr = [];
+        var i = 0;
+        for (var item in object) {
+            arr[i] = item;
+            i++;
+        }
+        return arr;
+    }
+
+    // 将Object的属性值输出成Array
+    function objOfValueToArr(object) {
+        var arr = [];
+        var i = 0;
+        for (var item in object) {
+            arr[i] = object[item];
+            i++;
+        }
+        return arr;
+    }
+
+
+    /*
+     * 测试
+     */
+    var obj = {
+        name: "oschina",
+        age: "18"
+    }
+    objOfPropertyToArr(obj); // 输出["name", "age"]
+    objOfValueToArr(obj); // 输出["oschina", "18"]
+
+</script>
+
+
+</body>
+</html>

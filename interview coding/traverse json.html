@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+//    AAA:3
+//    BBB:2
+    var data = [
+        {'a':'AAA'},
+        {'b':'AAA'},
+        {'c':'AAA'},
+        {'d':'BBB'},
+        {'e':'BBB'}
+    ];
+
+/*    var aux = [];
+    for(var i = 0; i < data.length; i ++ ) {
+        var obj = data[i];
+        for(var k in obj){
+            if(aux[obj[k]] === undefined) {
+                aux[obj[k]] = 1;
+            } else {
+                aux[obj[k]] =  aux[obj[k]]+1;
+            }
+
+        }
+    }
+    for(var key in aux) {
+        console.log(key+': '+aux[key]);
+    }*/
+
+    function traverse(data) {
+        var map = new Map();
+        for(var i = 0; i < data.length; i ++ ) {
+            var obj = data[i];
+            for(var k in obj){
+                if(map.get(obj[k]) == null) {
+                    map.set(obj[k],1);
+                } else {
+                    var v  = map.get(obj[k]);
+                    map.set(obj[k],v+1);
+                }
+            }
+        }
+        map.forEach(function(value, key) {
+            console.log(key + ' : ' + value);
+        })
+    };
+    traverse(data);
+
+
+
+
+
+</script>
+</body>
+</html>

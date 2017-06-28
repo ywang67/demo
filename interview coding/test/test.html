@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+
+<script>
+
+    /*Web MD*/
+    var list = [
+        {user:"mike", age:19, location: 'NJ'},
+        {user:"mike", age:21, location: 'NY'},
+        {user:"mike", age:19, location: 'NJ'},
+        {user:"Dave", age:31, location: 'NY'},
+        {user:"Tom", age:18, location: 'NY'},
+        {user:"Tom", age:18,location: 'NY'},
+    ];
+
+    var count = function(arr){
+        counter= {};
+        arr.forEach(function(obj){
+            var key = JSON.stringify(obj);
+            counter[key] = (counter[key] || 0) +1;
+        })
+        return counter;
+    }
+    console.log(count(list));
+
+
+    var unique = function (arr) {
+        counter={};
+        arr.forEach(function (obj) {
+            var key = JSON.stringify(obj);
+            counter[key] = (counter[key] || (function(){
+                return counter
+            })())
+        })
+        return counter;
+    }
+    console.log(unique(list));
+
+    var $ = {
+        set: function (args) {
+            object = args;
+            return this;
+        },
+
+        get: function () {
+            console.log("this is " + object);
+        }
+    }
+
+    $.set("chain method").get();
+
+
+    var Person = function(name, age){
+        this.name = name,
+        this.age = age
+    }
+
+    Person.prototype.a = function () {
+        console.log("This is from parent");
+    }
+
+    var Student = function(cla){
+        this.cla = cla;
+    }
+
+    Student.prototype = new Person("Paul",20);
+    Student.prototype.constructor = Student();
+
+
+
+    var s = new Student("english");
+
+
+    console.log(s.cla);
+    console.log(s.name);
+    console.log(s.age);
+    s.a();
+
+
+</script>
+
+</body>
+</html>

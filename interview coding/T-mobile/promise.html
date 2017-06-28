@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+
+</body>
+<script>
+    var myFirstPromise = new Promise(function(resolve, reject) {
+        /*reject("this is asshole");
+        setTimeout(function(){
+                resolve("Success!");
+            }, 250);*/
+        var a = Math.random();
+        if(a > 0.5){
+            reject('big');
+        }else{
+            resolve('small')
+        }
+    });
+
+    myFirstPromise
+        .then(function(successMessage) {
+            console.log("Yay! " + successMessage);
+            return "Yay! " + successMessage;}
+        ,function (errorMessage) {
+            console.log("Yay 2nd" + errorMessage);
+            return "Yay 2nd" + errorMessage
+        })
+        .then(function (suc) {
+            console.log(suc +  'abc');
+        }, function (err) {
+            console.log(err + '123');
+        })
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQ $.Extend</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<body>
+
+<script>
+
+    var result=$.extend({},{name:"Tom",age:21},{name:"Jerry",sex:"Boy"})
+    console.log(result);
+
+    $.extend({net:{}});
+    $.extend($.net, {hello: function () {
+        console.log('hello world');
+    }})
+
+$.net.hello();
+
+var result1=$.extend( true, {}, { firstname: "John", location: {city: "Boston",country:"USA"} }, { lastname: "Resig", location: {state: "MA",country:"China"} } );
+
+var result2 =$.extend(false, {}, {firstname:'Jim', location:{city:"Boston", country:"US"}}, {lastname:"Ricky", location: {state:"MA", country:"China"}});
+
+console.log(result1);
+console.log(result2);
+
+</script>
+
+</body>
+</html>

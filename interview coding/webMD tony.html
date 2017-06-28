@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+/*    foreach useful for iterator
+
+        map useful store data
+
+
+    foreach iterates over a list and applies some operation with side effects to each list member (such as saving each one to the database for example)
+        map iterates over a list, transforms each member of that list, and returns another list of the same size with the transformed
+    members (such as converting a list of strings to uppercase)*/
+
+
+    $ = {
+        extend : function(deep, target, options) {
+            for (name in options) {
+                copy = options[name];
+                if (deep && copy instanceof Array) {
+                    target[name] = $.extend(deep, [], copy);
+                } else if (deep && copy instanceof Object) {
+                    target[name] = $.extend(deep, {}, copy);
+                } else {
+                    target[name] = options[name];
+                }
+            }
+            return target;
+        }
+    };
+    $ = {
+        extend : function(target, options) {
+            for (name in options) {
+                target[name] = options[name];
+            }
+            return target;
+        }
+    };
+
+    /**
+     * Created by Yujian on 2017/3/7.
+     */
+    /*
+     A pure function doesn’t depend on and doesn’t modify the states of variables out of its scope.
+
+     Concretely, that means a pure function always returns the same result given same parameters. Its execution doesn’t depend on the state of the system.*/
+    /*
+     The main advantage of a pure function is that it doesn’t have any side effect. It doesn’t modify the state of the system outside of their scope.
+     Then, they just simplify and clarify the code: when you call a pure function, you just need to focus on the return value as you know you didn’t broke
+     anything elsewhere doing so.
+
+     A pure function is also robust. Its order of execution doesn’t have any impact on the system. Operations with pure functions could be parallelized.
+
+     Also, it’s very easy to unit test a pure function since there is no context to consider. Just focus on inputs / outputs.
+
+     Finally, maximizing the use of pure functions makes your code simpler, more flexible.*/
+    var values = { a: 1 };
+
+    function pureFunction ( a ) {
+        var b = 1;
+
+        a = a * b + 2;
+
+        return a;
+    }
+
+    var c = pureFunction( values.a );
+    // `values.a` has not been modified, it's still 1
+    var values = { a: 1 };
+
+    function impureFunction ( items ) {
+        var b = 1;
+
+        items.a = items.a * b + 2;
+
+        return items.a;
+    }
+
+    var c = impureFunction( values );
+    // Now `values.a` is 3, the impure function modifies it.
+
+
+
+    /**
+     * Created by Yujian on 2017/3/6.
+     */
+    function Animal(name){
+        this.name=name;
+
+    }
+    Animal.prototype.haveBaby=function(){
+        console.log('I have a baby');
+    }
+    function Cat(name,color){
+        this.name=name;
+        this.color=color;
+    }
+    Cat.prototype=new Animal();
+    Cat.prototype.constructor=Cat;
+    var cat=new Cat('Tom','White');
+    cat.haveBaby();
+    console.log(cat instanceof Animal);
+    console.log(cat instanceof Cat);
+    /*Flexible boxes, or flexbox, is a new layout mode in CSS3.
+
+     Use of flexbox ensures that elements behave predictably when the page layout must accommodate different screen sizes and different display devices.*/
+    /*The controller defines the actual behavior of your app. It contains business logic for the view and connects
+     the model to view with the help of $scope. A controller is associated with a HTML element with the ng-controller
+     directive.*/
+    /*1. Compile - It traverses the DOM and collect all of the directives. The result is a linking function.
+     2. Link - It combines the directives with a scope and produces a live view. Any changes in the scope model are reflected in the view, and any user interactions with the view are reflected in the scope model.*/
+
+    /*1.   console.log(type of null);
+     Answer: object
+     2. console.log(type of {});
+     Answer: object
+     3. console.log(type of []);
+     Answer: object
+     4. console.log(type of undefined);
+     Answer: undefined  */
+    function checkPalindrome(word) {
+        var l = word.length;
+        for (var i = 0; i < l / 2; i++) {
+            if (word.charAt(i) !== word.charAt(l - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    function palindrome(str)
+    {
+        var palin = str.split("").reverse().join("");0
+
+        if (palin === str){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+</script>
+
+
+</body>
+</html>

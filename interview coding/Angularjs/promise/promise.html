@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body  ng-app="myApp">
+<div ng-controller="myCtrl">
+    {{myValue}}
+    <hr>
+    {{step}}
+</div>
+</body>
+<script>
+    angular.module('myApp',[])
+        .controller('myCtrl',['$scope','$q','$timeout', function ($scope,$q,$timeout) {
+            $scope.addOne = function (num) {
+                var q = $q.defer();
+                $scope.step++;
+                if(angular.isNumber(num)){
+                    $timeout(function(){q.resolve(num+1)}, 1000);
+                }else{
+                    q.reject('NaN');
+                }
+                return q.promise;
+            }
+            $scope.step =0;
+            $scope.myValue = 0;
+            $scope.promise = $scope.addOne($scope.myValue);
+            $scope.promise
+                .then(function (success) { return $scope.addOne(success);})
+                .then(function (success) { return $scope.addOne(success);})
+                .then(function (success) { return $scope.addOne(success);})
+                .then(function (success) { return $scope.addOne("success");})
+                .then(function (success) { return $scope.addOne(success);})
+                .then(function (success) { return $scope.addOne(success);})
+                .then(
+                function (success) {$scope.myValue = success;}/*,
+                function (err) {$scope.myValue = err;}*/
+            ).catch(function(err){$scope.myValue=err})
+        }])
+</script>
+</html>

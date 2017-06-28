@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+/*    Write a function that will loop through a list of integers and print the index of each element after a 2 second delay.*/
+
+const arr = [19,231,42,552];
+
+        for(var i=0;i<arr.length; i++) {
+
+            setTimeout((function (i_local) {
+                return function () {
+                    console.log(i_local);
+                }
+            })(i),5000);
+
+
+        }
+
+
+</script>
+</body>
+</html>

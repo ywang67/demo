@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Element</title>
+</head>
+<body>
+<div>
+    <ol>
+        <li>item 1</li>
+        <li>item 2</li>
+    </ol>
+</div>
+</body>
+<script>
+    var ol = document.getElementsByTagName('ol');
+    var li = document.createElement('li');
+    li.innerHTML = 'item 3';
+    ol[0].appendChild(li);
+</script>
+</html>

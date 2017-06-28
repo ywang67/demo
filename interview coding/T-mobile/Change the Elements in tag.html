@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change the Elements in tag</title>
+</head>
+<body>
+<div>
+    <ol>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 13</li>
+    </ol>
+</div>
+</body>
+<script>
+    (function(){
+        var list = document.getElementsByTagName("li");
+        Array.prototype.forEach.call(list, function(e){
+            e.textContent = e.textContent.replace(/\d{1,2}/, function(str) {
+                console.log(str);
+                return String.fromCharCode(parseInt(str) + 64);
+            })
+        })
+    })();
+</script>
+</html>

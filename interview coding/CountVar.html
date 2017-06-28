@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+/*    var compress = function(str){
+        var arr = str.split('');
+        var arr2 = [];
+        /!*console.log(arr);*!/
+        for(var n=0;n<arr.length-1; n++){
+           /!* console.log(arr[n])*!/
+            for(var m=n+1;m<=arr.length-1;m++){
+                /!*console.log(arr[m])*!/
+                if(arr[n] !== arr[m]){
+                    arr2.push(arr[n]);
+                    arr2.push(m);
+                    /!*console.log(arr2);*!/
+                }
+            }
+            n=m-1;
+        }
+        return arr2.join('');
+    }
+
+    var s = 'aaaabbb';
+    console.log(compress(s));*/
+
+
+    function compress(str){
+        var arr=str.split('');
+        var temp={};
+        var result="";
+        for(var i=0;i<arr.length;i++){
+            if(temp.hasOwnProperty(arr[i])){
+                temp[arr[i]]=temp[arr[i]]+1;
+            }else{
+                for(key in temp){
+                    result=result+key+temp[key];
+                }
+                temp={};
+                temp[arr[i]]=1;
+            }
+        }
+        console.log(temp);
+        for(key in temp){
+            result=result+key+temp[key];
+        }
+
+        return result;
+    }
+    console.log(compress("aaaabbbaaa"))
+</script>
+</html>

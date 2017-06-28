@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ng-Repeat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+Filter by Name:<input type="text" ng-model="search.name" />
+Filter by Age:<input type="number" ng-model="search.age" />
+<div ng-repeat="people in peoples | filter:search |limitTo:3 : 2">
+    name: {{people.name}}
+    age: {{people.age}}
+</div>
+</body>
+<script>
+    angular.module('myApp',[])
+        .controller('myCtrl', function ($scope) {
+            $scope.peoples = [{"name": "Paul", "age":"19"},
+                {"name":"Josh", "age":"200"},
+                {"name":"Josh", "age":"200"},
+                {"name":"Josh", "age":"200"},
+                {"name":"Josh", "age":"200"}
+
+            ]
+        })
+</script>
+</html>

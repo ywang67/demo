@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="todo-app">
+    <li class="item">Walk the dog</li>
+    <li class="item">Pay bills</li>
+    <li class="item">Make dinner</li>
+    <li class="item">Code for one hour</li>
+</ul>
+
+<script>
+
+//    target.addEventListener(type, listener[, useCapture]);
+//    第三个参数，useCapture，是可选的，默认为false，且只有在部分浏览器中支持，true表明该事件监听器绑定在捕获阶段（和目标阶段），false则表明绑定在冒泡阶段（和目标阶段）。
+    window.onload = function () {
+        var oUl = document.getElementById('todo-app');
+        oUl.addEventListener('click', function (e) {
+            if(e.target && e.target.nodeName === 'LI') {
+                alert(e.target.innerHTML);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    var list = [
+        {user:"mike"},
+        {user:"mike"},
+        {user:"mike"},
+        {user:"Dave"},
+        {user:"Tom"},
+        {user:"Tom"},
+    ];
+  /*  var arr = [ 'Car', 'Car', 'Truck', 'Boat', 'Truck' ];*/
+
+
+    function unique(obj){
+        var uniques=[];
+        var stringify={};
+        for(var i=0;i<obj.length;i++){
+            var keys=Object.keys(obj[i]);
+            keys.sort(function(a,b) {return a-b});
+            var str='';
+            for(var j=0;j<keys.length;j++){
+                str+= JSON.stringify(keys[j]);
+                str+= JSON.stringify(obj[i][keys[j]]);
+            }
+            if(!stringify.hasOwnProperty(str)){
+                uniques.push(obj[i]);
+                stringify[str]=true;
+            }
+        }
+        return uniques;
+    }
+
+    console.log(unique(list));
+
+
+
+
+/*/!*ES6 Unique*!/
+  var unique = function(arr){
+      var m = new Set();
+      for(i in arr){
+          m.add('user:' + arr[i].user);
+      }
+      console.log(m);
+  }
+
+  console.log(unique(list));*/
+
+/*    var unique = function(arr){
+        res = {}
+        var i = 0
+        arr.forEach(function(obj){
+            var key = JSON.stringify(obj);
+            if(res[key] in res){
+
+            }
+            else{
+                res[key] = i;
+                i++;
+            }
+        })
+    }
+
+    console.log(unique(list));*/
+
+
+
+/*============================================================================================================================*/
+
+
+
+</script>
+
+</body>
+</html>

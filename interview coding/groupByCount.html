@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var list = [
+        {user:"mike"},
+        {user:"mike"},
+        {user:"mike"},
+        {user:"Dave"},
+        {user:"Tom"},
+        {user:"Tom"},
+    ];
+
+/*    var arr = [ 'Car', 'Car', 'Truck', 'Boat', 'Truck' ];
+
+    var count = function(a){
+        counter = {};
+        arr.forEach(function (ele) {
+            console.log(ele);
+            counter[ele] = (counter[ele] || 0) +1;
+        })
+        return counter;
+    }
+    console.log(count(arr))*/
+
+    var count = function(arr){
+        counter = {};
+        arr.forEach(function(obj){
+            var key = JSON.stringify(obj);
+            console.log(key);
+            counter[key] = (counter[key] || 0) + 1;
+        });
+        return counter;
+
+    }
+    console.log(count(list));
+
+//////////////////////////////////////////////////////
+/*这个是其他例子*/
+/*    var arr = [ 'Car', 'Car', 'Truck', 'Boat', 'Truck' ];
+    counter = {};
+    arr.map(function (a) {
+        if(a in counter){
+            counter[a]++;
+        }
+        else{
+            counter[a] = 1
+        }
+    })
+
+    console.log(counter);*/
+/////////////////////////////////////////////////////////////////////
+
+
+
+
+/*    "use strict";
+    function groupByCount(list) {
+        var help = {};
+        for(var key in list) {
+            var obj = list[key];
+/!*            console.log(obj);*!/
+/!*            if(help[obj['user']] === undefined) {
+                help[obj['user']] = 1;
+            } else {
+                help[obj['user']]++;
+            }*!/
+            help['{user:'+'"'+obj['user']+'"'+'}'] = (help['{user:'+'"'+obj['user']+'"'+'}'] || 0) +1;
+
+        }
+
+        return help;
+    }
+    console.log(groupByCount(list))*/
+</script>
+
+</body>
+</html>

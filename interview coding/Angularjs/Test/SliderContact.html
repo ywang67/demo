@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div style="float:left">
+    <a href="#" ng-click="value=true">Open Contact Slider </a>
+</div>
+<div ng-show="value">
+    <my-contact></my-contact>
+</div>
+</body>
+<script>
+    angular.module('myApp', [])
+        .directive('myContact',function(){
+            var controller = ["$scope",function ($scope) {
+                $scope.contact ={
+                    name : "",
+                    surname:"",
+                    message:""
+                }
+                $scope.value = false;
+                $scope.close = function () {
+                    $scope.value = false
+                };
+                $scope.send = function () {
+                    console.log($scope.contact);
+                    $scope.value = false
+                };
+            }]
+            return {
+                restrict: "E",
+                template: '<div style="border:1px solid black; float:left"><h2>Contact</h2><br />Name:<br /><input ng-model="contact.name">' +
+                '<br />Surname:<br /><input ng-model="contact.surname"><br />' +
+                'Message:<br /><input ng-model="contact.message"><br /><button style="float: left" ng-click="close()">Close</button><button style="float:right" ng-click="send()">Send</button></div>',
+
+                controller: controller,
+                link: function (scope, elem, attrs, controller) {
+                    
+                }
+            }
+        })
+</script>
+</html>

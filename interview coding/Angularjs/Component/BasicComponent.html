@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BasicComponent</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<book-list employee='emp1'></book-list>
+</body>
+<script>
+    angular.module('myApp',[])
+        .controller('myCtrl', function ($scope) {
+            $scope.emp1 = {ename: 'YUE', eno:'001'};
+        })
+        .component('bookList', {
+            template: '<div><h1>{{title}}</h1></br><h1>{{$ctrl.employee.ename}}</h1></div></br><button ng-click="count()"></button></div>',
+            controller : function($scope){
+                $scope.clicks = 0;
+                $scope.title = 'Hi there!';
+                function count(){
+                    $scope.clicks += 1;
+                    $scope.title = 'clicked' + $scope.clicks + 'times!'
+                }
+                $scope.count = count;
+            },
+            bindings:{employee: '='}
+        })
+</script>
+</html>

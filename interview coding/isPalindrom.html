@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+
+    function isPalindromArray1(arr){
+        return arr.join('+') === arr.reverse().join('+');
+    }
+
+    function isPalindromArray2(arr){
+        var i = 0;
+        var j = arr.length-1;
+        while(i < j) {
+            if(arr[i++] !== arr[j--])   return false;
+
+        }
+        return true;
+    }
+
+    function isPalindrom1(str){
+        return str === str.split('').reverse().join('');
+    }
+
+    function isPalindrom2(str) {
+        var i = 0;
+        var j = str.length-1;
+        while(i < j) {
+            if(str.charAt(i++) !== str.charAt(j--)) return false;
+        }
+        return true;
+    }
+
+
+    console.log(isPalindrom1('abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba'));
+    console.log(isPalindrom2('abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba'));
+
+
+</script>
+</body>
+</html>
