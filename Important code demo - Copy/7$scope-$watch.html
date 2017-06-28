@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$Watch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="7 for $watch.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <input type="text" value="" ng-model="data.name">
+
+        change count: {{data.count}}-{{data.name}}
+        <button ng-click="stop()">Stop</button>
+    </div>
+</div>
+</body>
+</html>

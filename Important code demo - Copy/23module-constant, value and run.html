@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>module-constant, value and run</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl"></div>
+</div>
+<script>
+    angular.module('myApp', [], ['$provide', function ($provide) {
+        console.log('config');
+    }])
+        .config(function (APIKEY/*,version*/) {                           //version cannot inject
+            console.log(APIKEY/*,version*/);
+            console.log('config');
+        })
+        .run(function () {
+            console.log('run');
+        }) //execute after config before controller
+        .constant('APIKEY', 'xxxxx') //constant can inject into any function
+
+        .value('version', '1.0.0') // value can only inject into controller, service, factory
+        .controller('myCtrl', ['APIKEY', 'version', function (APIKEY, version) {    //injection
+            console.log(APIKEY);
+            console.log(version);
+            console.log('controller');
+        }]);
+</script>
+</body>
+</html>

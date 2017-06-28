@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>q</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <ng-view></ng-view>
+</div>
+<script>
+    angular.module('myApp', ['ngRoute'])
+        .config(function ($routeProvider) {
+            $routeProvider
+                .when('/',
+                    {
+                        template: '28myApp.html',
+                        controller: 'myCtrl'
+                    })
+        })
+
+    .controller('myCtrl', ['$scope', '$q', function ($scope, $q) {
+        var defer = $q.defer();
+        defer.promise.then(function (food) {
+            alert("you can eat my" + food)
+            return "salad"
+        })
+            .then(function (food) {
+                alert("and my" + food)
+                return ("ice cream")
+            })
+            .then(function (food) {
+                alert("and my" + food)
+            })
+        defer.resolve("pizza");
+        $scope.model = {
+            message: 'This is my app'
+        }
+    }]);
+</script>
+</body>
+</html>

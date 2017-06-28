@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16-3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <button ng-click="changeStatus()">
+            ChangeStatus
+        </button>
+        {{status}}
+    </div>
+    <div ng-style="{
+        color: 'red',
+       'margin-top':'50ox'
+    }">
+        ng-style
+    </div>
+</div>
+<script>
+    var myApp= angular.module('myApp', []);
+    myApp.controller('myCtrl', function($scope){
+        $scope.status = false;
+        $scope.changeStatus = function(){
+            $scope.status = !$scope.status;
+        }
+    })
+</script>
+</body>
+</html>

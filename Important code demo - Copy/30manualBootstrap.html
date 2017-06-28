@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>manualBootstrap</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="myCtrl">
+    Hello {{msg}}!
+</div>
+<script>
+    angular.module('myApp',[])
+        .controller('myCtrl',
+                        function($scope){$scope.msg = 'World'});
+
+    //manual bootstrap process
+    angular.element(document).ready(function(){
+        angular.bootstrap(document, ['myApp']);
+    })
+</script>
+</body>
+</html>

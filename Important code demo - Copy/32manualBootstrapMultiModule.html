@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>manualBootstrapMultiModules</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<!--angularjs manual bootstrap process -->
+<div id="div1">
+    <h1>Multiple modules bootstrap</h1>
+    <div ng-controller="Controller1">
+        {{name}}
+    </div>
+    <div ng-controller="Controller2">
+        {{name}}
+    </div>
+</div>
+<div id="div2">
+    <div ng-controller="Controller1">
+        {{name}}
+    </div>
+</div>
+<script>
+    //module
+    var app1 = angular.module("module1",[]);
+    app1.controller("Controller1",function($scope){
+        $scope.name="Tom";
+    });
+    var app2 = angular.module("module2",[]);
+    app2.controller("Controller2", function ($scope) {
+        $scope.name ="Jerry";
+    });
+    //manual bootstrap process
+    angular.element(document).ready(function(){
+        var div1 = document.getElementById('div1');
+        var div2 = document.getElementById('div2');
+        //bootstrap div1 for module1 and module2
+        angular.bootstrap(div1, ['module1','module2']);
+        //bootstrap div2 only for module1
+        angular.bootstrap(div2,['module1']);
+    });
+</script>
+</body>
+</html>

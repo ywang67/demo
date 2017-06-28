@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$qAll</title>
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ng-controller="firstController">
+        <p>Hello World</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script>
+    angular.module('myApp', [])
+        .controller('firstController', function($scope, $http,$q) {
+            var first = $http.get("first.json"),
+                second = $http.get("second.json"),
+                third = $http.get("third.json");
+            $q.all([first, second, third]).then(function (result) {
+                var tmp = [];
+                //console.log(result);
+                angular.forEach(result, function (response) {
+                    tmp.push(response.data);
+                });
+                return tmp;
+            }).then(function (tmpResult) {
+                console.log($scope.combinedResult = tmpResult.join(", "));
+            });
+        })
+
+
+</script>
+<script type="text/javascript" src="angular.min.js"></script>
+
+</body>
+</html>
