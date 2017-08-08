@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function productFib(prod){
+        var n = 0;
+        var nPlus = 1;
+        while(n*nPlus < prod) {
+            nPlus = n + nPlus;
+            n = nPlus - n;
+        }
+        return [n, nPlus, n*nPlus===prod];
+    }
+
+    console.log(productFib(15));
+    console.log(productFib(714));
+    console.log(productFib(800));
+
+</script>
+</html>

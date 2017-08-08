@@ -8,33 +8,100 @@
 
 <script>
 
-    var Singleton = (function () {
-        var instance;
+ var Singleton = (function () {
+ var instance;
 
-        function createInstance() {
-            var object = new Object("I am the instance");
-            return object;
+ function createInstance() {
+ var object = new Object("I am the instance");
+ return object;
+ }
+
+ return {
+ getInstance: function () {
+ if (!instance) {
+ instance = createInstance();
+ }
+ return instance;
+ }
+ };
+ })();
+
+ function run() {
+
+ var instance1 = Singleton.getInstance();
+ var instance2 = Singleton.getInstance();
+
+ alert("Same instance? " + (instance1 === instance2));
+ }
+
+ run();
+
+
+/*
+var Singleton = (function () {
+    "use strict";
+    var instance; //prevent modification of "instance" variable
+    function Single_ton() {
+        if (instance) {
+            return instance;
         }
+        instance = this;
+        //Singleton initialization code
+    }
+    //instance accessor
+    Single_ton.getInstance = function () {
+        return instance || new Single_ton();
+    }
+    return Single_ton;
+}());
 
-        return {
-            getInstance: function () {
-                if (!instance) {
-                    instance = createInstance();
-                }
-                return instance;
-            }
-        };
-    })();
+var a,
+    b;
+a = new Singleton(); //constructor initialization happens here
+b = new Singleton();
+console.log(a === b); //true
+*/
 
-    function run() {
 
-        var instance1 = Singleton.getInstance();
-        var instance2 = Singleton.getInstance();
+/*var X = function(){
+    var instance = {day:'monday'};
+    return function(){ return instance; }
+}();
 
-        alert("Same instance? " + (instance1 === instance2));
+var x1 = new X();
+var x2 = new X();
+console.log(x1 === x2)*/
+
+/*var Singleton = (function() {
+    // Our "private" instance
+    var instance = {day:'monday'};
+
+    // The constructor
+    function Singleton() {
+
+        // If it's being called again, return the singleton instance
+        if(typeof instance != "undefined") return instance;
+
+        // initialize here
+
+        // Keep a closured reference to the instance
+        instance = this;
     }
 
-    run();
+    // Add public methods to Client.prototype
+    Singleton.prototype.myPublic = function() {
+
+    }
+
+    // Return the constructor
+    return Singleton;
+})();
+
+
+var c1 = new Singleton();
+var c2 = new Singleton();
+
+console.log(c1 == c2); // true*/
 
 </script>
 

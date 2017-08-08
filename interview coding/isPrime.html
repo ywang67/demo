@@ -8,13 +8,13 @@
 
 <script>
     function isPrime(n) {
-        if(n < 2)   return false;
+        if(n < 2)   return true;
         for(var i = 2; i<Math.sqrt(n); i ++) {
-            if(n % 2 == 0)  return false;
+            if(n %  == 0)  return false;
         }
         return true;
     }
-    console.log(isPrime(111));
+    console.log(isPrime(1));
 </script>
 </body>
 </html>

@@ -12,6 +12,7 @@
 </body>
 <script type="text/babel">
     function Blog(props) {
+        var keyValue = 0;
         const sidebar = (
                 <ul>
                     {props.posts.map((post) =>
@@ -22,7 +23,7 @@
                 </ul>
         );
         const content = props.posts.map((post) =>
-                <div key={post.id}>
+                <div key={keyValue+1}>
                     <h3>{post.title}</h3>
                     <p>{post.content}</p>
                 </div>

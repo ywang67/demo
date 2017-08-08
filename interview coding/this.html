@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var f, obj;
+    f = function(){
+        this.x = 5;
+        (function(){
+            this.x = 3;
+        })();
+        console.log(this.x);
+
+    }
+    obj = {
+        x:4,
+        m : function() {
+            console.log(this.x);
+        }
+    };
+    f();
+    new f();
+    obj.m();
+    new obj.m();
+    f.call(f);
+    obj.m.call(f);
+</script>
+</html>
