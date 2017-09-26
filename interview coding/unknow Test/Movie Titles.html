@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser-polyfill.min.js'></script>
+</head>
+<body>
+
+<script id="jsbin-javascript">
+    'use strict';
+
+    var API_URL = 'https://jsonmock.hackerrank.com/api/movies/search/?Title={title}&page={page}';
+
+    var getMovies = function getMovies() {
+        var searchQuery = arguments.length <= 0 || arguments[0] === undefined ? 'spiderman' : arguments[0];
+
+        fetchMovies(searchQuery, 1).then(asJson).then(function (json) {
+            var firstPage = Promise.resolve(json);
+            var pagesCount = json.total_pages;
+
+            var allPages = null;
+            if (pagesCount <= 1) {
+                allPages = firstPage;
+            } else {
+                var missingPages = Array.from(new Array(pagesCount), function (_, i) {
+                    return i + 1;
+                }).slice(1).map(function (page) {
+                    return fetchMovies(searchQuery, page).then(asJson);
+                });
+                allPages = Promise.all([firstPage].concat(missingPages));
+            }
+
+            allPages.then(function (pagesArray) {
+                var titles = pagesArray.map(function (page) {
+                    return page.data.map(function (movie) {
+                        return movie.Title;
+                    });
+                }).reduce(function (allTitles, currTitles) {
+                    return allTitles.concat(currTitles);
+                }).sort();
+                console.log(titles);
+            });
+        });
+    };
+
+    var fetchMovies = function fetchMovies(searchQuery, page) {
+        return fetch(API_URL.replace('{title}', searchQuery).replace('{page}', page));
+    };
+
+    var asJson = function asJson(response) {
+        return response.json();
+    };
+
+    getMovies();
+
+
+
+
+
+const getMovies11 = (searchQuery = 'spiderman') => {
+    fetchMovies(searchQuery, 1)
+        .then(asJson)
+        .then((json) => {
+            var firstPage = Promise.resolve(json)
+            var pagesCount = json.total_pages
+
+            var allPages = null;
+            if (pagesCount <= 1){
+                allPages = firstPage;
+            } else {
+                var missingPages = Array.from(new Array(pagesCount), (_, i) => i + 1).slice(1)
+                    .map((page) => fetchMovies(searchQuery, page).then(asJson))
+                allPages = Promise.all([firstPage].concat(missingPages))
+            }
+
+            allPages.then((pagesArray) => {
+                let titles = pagesArray
+                    .map((page) => page.data
+                        .map((movie) => movie.Title))
+                    .reduce((allTitles, currTitles) => allTitles.concat(currTitles))
+                    .sort()
+                console.log(titles)
+            })
+        })
+}
+
+const fetchMovies11 = (searchQuery, page) => fetch(API_URL.replace('{title}', searchQuery).replace('{page}', page))
+
+const asJson11 = (response) => response.json()
+
+getMovies();</script></body>
+</html>

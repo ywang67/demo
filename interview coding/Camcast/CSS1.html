@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #accessibility > p:nth-child(-n+3) {
+            color: red;
+        }
+
+        #accessibility > p:nth-child(n+4) {
+            color: darkblue;
+        }
+
+        #accessibility {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        @media only screen and (max-width: 800px){
+            #accessibility {
+                display: none;
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div id='accessibility'>
+    <p> Comcast</p>
+    <p> Comcast Spectacor</p>
+    <p> Comcast Ventures</p>
+    <p> NBCUniversal</p>
+    <p> NBCUniversal International</p>
+    <p> Parks & Resorts</p>
+</div>
+
+
+</body>
+</html>

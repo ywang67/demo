@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" charset="UTF-8">
+    <title>Image Responsive</title>
+</head>
+<style>
+    #myDiv{
+        height: auto;
+        display: none;
+    }
+    img{
+        width: 100%;
+    }
+</style>
+<body>
+<div id="myDiv">
+    <img src="./tree.jpg" width="600px", height="700px">
+</div>
+
+<div>
+    <button onclick="show()">Show</button>
+    <hr>
+    <button onclick="hide()">Hide</button>
+</div>
+
+</body>
+<script>
+    function show(){
+        var x = document.getElementById('myDiv');
+        console.log(x.style.display);
+        if(x.style.display === ''){
+            x.style.display = 'block';
+        }
+    }
+    function  hide() {
+        var x = document.getElementById('myDiv');
+        if(x.style.display === 'block') {
+            x.style.display = 'none';
+        }
+    }
+</script>
+</html>

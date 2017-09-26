@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 5px;
+        }
+
+        .test {
+            border: 1px solid #000;
+            border-bottom: 0;
+            border-right: 0;
+            border-collapse: collapse;
+        }
+        .test::after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+        .test .test__col {
+            display: table-cell;
+            width: 100%;
+            min-height: 100px;
+            border-bottom: 1px solid #000;
+            border-right: 1px solid #000;
+        }
+        @media screen and (min-width: 360px) {
+            .test .test__col {
+                float: left;
+                width: 50%;
+            }
+        }
+        @media screen and (min-width: 720px) {
+            .test .test__col {
+                width: 25%;
+            }
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div class="challenge-text hrx-version ck_table-wrap">
+
+
+    <p>Perform the following operations based on the value of window size:</p>
+
+
+</div>
+
+<div class="test">
+    <div class="test__col"></div>
+    <div class="test__col"></div>
+    <div class="test__col"></div>
+    <div class="test__col"></div>
+</div>
+</body>
+</html>
+
