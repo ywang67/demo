@@ -40,20 +40,21 @@ const getElementsByClassName = (node, classname) => {
 const getElementsByClassName2 = (node, classname) => {
   const res = [];
   let p = [node];
+  let allChild = [];
 
   while (p.length !== 0) {
-    console.log(p);
     p.forEach(currNode => {
       if (currNode.classlist.includes(classname)) {
         res.push(currNode);
       }
-      p = [];
       currNode.children.forEach(child => {
-        p.push(child);
+        allChild.push(child);
       });
     });
+    p = allChild;
+    allChild = [];
   }
   return res;
 }
 
-getElementsByClassName2(root, 'list-item');
+console.log(getElementsByClassName2(root, 'list-item'));
