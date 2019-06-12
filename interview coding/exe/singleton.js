@@ -1,7 +1,7 @@
 var Singleton = (function () {
     var instance;
 
-    function createInstance() {
+    var createInstance = function() {
         var object = new Object("I am the instance");
         return object;
     }
@@ -9,7 +9,7 @@ var Singleton = (function () {
     return {
         getInstance: function () {
             if (!instance) {
-                instance = createInstance();
+              instance = createInstance();
             }
             return instance;
         }
@@ -21,20 +21,8 @@ function run() {
     var instance1 = Singleton.getInstance();
     var instance2 = Singleton.getInstance();
 
-    alert("Same instance? " + (instance1 === instance2));
+    console.log("Same instance? " + (instance1 === instance2));
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+run();
