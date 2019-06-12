@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+<p id="p3">This is 3rd paragraph</p>
+</div>
+
+<script>
+var parent = document.getElementById("div1");
+var newNodes = Array.from(parent.childNodes).filter(e => e.nodeName === 'P').reverse();
+parent.innerHTML = '';
+newNodes.forEach(n => {
+  parent.appendChild(n);
+});
+</script>
+
+</body>
+</html>

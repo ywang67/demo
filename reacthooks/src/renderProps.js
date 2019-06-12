@@ -71,12 +71,13 @@ class Mouse extends React.Component {
           use the `render` prop to dynamically determine what to render.
         */}
         {this.props.render(this.state)}
+        123
       </div>
     );
   }
 }
 
-export default class MouseTracker extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div>
