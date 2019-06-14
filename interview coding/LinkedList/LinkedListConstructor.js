@@ -28,7 +28,7 @@ class LinkedList {
     if (this.head.data === data) {
       this.head = this.head.next;
     } else {
-      let p1 = head;
+      let p1 = this.head;
       let p2 = p1.next;
       while (p2) {
         if (p2.data === data) {
