@@ -17,25 +17,26 @@ class LinkedList {
   }
 
   deleteNode(e) {
-    if (!this.head) {
-      console.log('this link is empty!')
-      return;
-    }
-
-    if (this.head.data === e ) {
-      this.head = this.head.next;
-    } else {
-      let p1 = this.head;
-      let p2 = p1.next;
-      while (p2) {
-        if (p2.data === e) {
-          p1.next = p2.next;
-        } else {
-          p1 = p2;
-        }
-        p2 = p2.next;
+      if (!this.head) {
+        console.log('this list is empty!');
+        return;
       }
-    }
+
+      if (this.head.data === e) {
+        this.head = this.head.next;
+      } else {
+        let p1 = this.head;
+        let p2 = p1.data;
+
+        while (p2) {
+          if (p2.data === e) {
+            p1 = p2.next;
+          } else {
+            p1 = p2;
+          }
+          p2 = p2.next;
+        }
+      }
   }
 }
 

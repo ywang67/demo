@@ -8,31 +8,31 @@
 <script>
 /*    O(nlogn)	 space:O(1)*/
 
-/*    function quickSort(arr, left, right) {
-        var index = partition(arr, left, right);
-        if(left < index-1) {
-            quickSort(arr, left, index-1);
-        }
-        if(index < right) {
-            quickSort(arr, index, right);
+  function quickSort(arr, left, right) {
+    var index = partition(arr, left, right);
+    if(left < index-1) {
+        quickSort(arr, left, index-1);
+    }
+    if(index < right) {
+        quickSort(arr, index, right);
+    }
+  }
+  function partition(arr, left, right) {
+    var pivot = arr[Math.floor((left+right)/2)];
+    while(left <= right) {
+        while(arr[left] < pivot)    left ++;
+        while(arr[right] > pivot)   right --;
+        if(left <= right) {
+            var temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left ++;
+            right --;
+
         }
     }
-    function partition(arr, left, right) {
-        var pivot = arr[Math.floor((left+right)/2)];
-        while(left <= right) {
-            while(arr[left] < pivot)    left ++;
-            while(arr[right] > pivot)   right --;
-            if(left <= right) {
-                var temp = arr[left];
-                arr[left] = arr[right];
-                arr[right] = temp;
-                left ++;
-                right --;
-
-            }
-        }
-        return left;
-    }*/
+    return left;
+  }
 
 
 

@@ -32,8 +32,7 @@ class LinkedList {
       let p2 = p1.next;
       while (p2) {
         if (p2.data === data) {
-          p2 = p2.next;
-          break;
+          p1.next = p2.next;
         } else {
           p1 = p2;
         }
