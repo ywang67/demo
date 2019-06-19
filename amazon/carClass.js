@@ -18,3 +18,27 @@ class car {
     }
   }
 }
+
+function car(brand, model) {
+	return {
+    brand,
+  	model,
+  	speed: 0,
+    set speedUp(val) {
+  		if (this.speed > 210) {
+  			console.log(`your speed too fast, it is ${this.speed} now!`);
+  		}
+  		this.speed += val;
+  	},
+    set speedDown(val) {
+      if (this.speed < val) {
+  			this.speed = 0;
+  		} else {
+  			this.speed -= val;
+  		}
+    },
+    get showInfor() {
+  			console.log(`this is ${brand} ${model}`);
+  		}
+  }
+}
