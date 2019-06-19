@@ -41,6 +41,10 @@ class LinkedList {
       }
     }
   }
+
+  clear() {
+    this.head = null;
+  }
 }
 
 let head = new LinkedList();
@@ -50,6 +54,7 @@ test.forEach(e => {
   head.insetNodeAtTail(e);
 });
 console.log(head);
+
 
 const reverse = (list) => {
   if (!list || !list.next) {
