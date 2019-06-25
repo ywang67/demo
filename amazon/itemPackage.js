@@ -23,6 +23,10 @@ Object.keys(val).forEach(key => {
         quantity: val[key],
     });
 });
+// time complexity: O(n);
+// space complexity: O(n); becuase line 17 which assign value, based on length of list, so S(n) <= n.
+// line 19 has another assign one, it is length of val, we can set it to m
+// hence, base case is O(1), worest is O(n), avage is also O(n).
 
 const orders = [
   { itemId: 3,  quantity: 2 },
@@ -51,3 +55,6 @@ Object.keys(orderObj).forEach(id => {
     });
   }
 });
+
+// time complexity: O(m+n);
+// space complexity: O(m+n);
