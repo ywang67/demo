@@ -1,0 +1,19 @@
+.container {
+  font-family: sans-serif;
+}
+
+.search-element {
+  color: #cdcdcd;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.search-element:hover {
+  background-color: #cdcdcd;
+  color: #ffffff;
+}
+
+.search-element:focus {
+  background-color: #cdcdcd;
+  color: #ffffff;
+}
