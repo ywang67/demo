@@ -74,4 +74,4 @@ const removeDuplicate = (link) => {
 }
 
 // removeDuplicate(head.head);
-head.deletNode(2);
+head.deleteNode(2);

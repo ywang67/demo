@@ -1,14 +1,34 @@
-function curry(fn) {
-  const arg1 = Array.prototype.slice.call(arguments, 1);
-  return function() {
-    const arg2 = Array.from(arguments);
-    const arr = arg1.concat(arg2);
-    return fn(...arr);
-  }
+function curry(fn, args) {
+    var length = fn.length;
+    args = args || [];
+
+    return function() {
+
+        var _args = args.slice(0);
+
+        var arg;
+        var i;
+        console.log(arguments);
+
+        for (i = 0; i < arguments.length; i++) {
+
+            arg = arguments[i];
+
+            _args.push(arg);
+
+        }
+        if (_args.length < length) {
+            return curry.call(this, fn, _args);
+        }
+        else {
+            return fn.apply(this, _args);
+        }
+    }
 }
 
-const sum = (a, b) => {
-  return a + b;
-}
 
-console.log(curry(sum, 1)(2));
+var fn = curry(function(a, b, c) {
+    console.log([a, b, c]);
+});
+
+fn('a')('b')('c')

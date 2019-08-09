@@ -26,25 +26,6 @@ var o = {
 //  "200.60" :"bar"
 // };
 
-
-var p = function flatten(obj) {
-   var res = {};
-
-   var keysLevel1 = Object.keys(obj);
-   keysLevel1.forEach(k1 => {
-       if (typeof obj[k1] === 'object') {
-           var keysLevel2 = Object.keys(obj[k1]);
-           keysLevel2.forEach(k2 => {
-               var newKey = k1 + '.' + k2;
-               res[newKey] = obj[k1][k2];
-           });
-       } else {
-           res[k1] = obj[k1];
-       }
-   });
-   return res;
-}
-
 function flattenRur(obj) {
   var res = {};
   function flat(currObj,key) {
