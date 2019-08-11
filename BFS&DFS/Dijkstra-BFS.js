@@ -1,36 +1,61 @@
 const dict = {
-  a: [{ 'b': 1 }, { 'c': 5 }],
-  b: [{ 'a': 1 }, { 'c': 2 }, { 'e': 7 }],
-  c: [{ 'a': 5 }, { 'b': 2 }, { 'd': 1 }, { 'e': 4 }],
-  d: [{ 'c': 1 }, { 'e': 3 }, { 'f': 6 }],
-  e: [{ 'b': 7 }, { 'c': 4 }, { 'd': 3 }],
+  a: [{ 'b': 5 }, { 'c': 1 }],
+  b: [{ 'a': 5 }, { 'c': 2 }, { 'd': 1 }],
+  c: [{ 'a': 1 }, { 'b': 2 }, { 'd': 4 }, { 'e': 8 }],
+  d: [{ 'b': 1 }, { 'c': 4 }, { 'e': 3 }, { 'f': 6 }],
+  e: [{ 'c': 8 }, { 'd': 3 }],
   f: [{ 'd': 6 }],
 };
 
+const distanceInit = (map, starter) => {
+  const distance = {};
+  Object.keys(map).forEach(n => {
+    distance[n] = n !== starter ? Infinity : 0;
+  })
+  return distance;
+}
+
 const bfs = (map, starter) => {
-  const res = [];
   const firstElement = {};
   firstElement[starter] = 0;
   let queue = [firstElement];
-  const parent = {};
-  parent[starter] = null;
-  // while (queue.length) {
-  //   const temp = Object.keys(queue.shift())[0];
-  //   console.log(temp);
-  //   map[temp].forEach(e => {
-  //     if (queue.indexOf(e) < 0 && res.indexOf(e) < 0) {
-  //       queue.push(e);
-  //       parent[e] = temp;
-  //     }
-  //   });
-  //   res.push(temp);
-  // }
-  let v = 'e';
-  while (v) {
-    console.log('shortest steps to starter', v);
-    v = parent[v];
+  const seen = [];
+  const startElement = {};
+  startElement[starter] = null;
+  const parent = startElement;
+  const distance = distanceInit(map, starter);
+
+  while (queue.length) {
+    console.log('test: ', queue);
+    queue.sort((a, b) => {
+      return Object.values(a)[0] - Object.values(b)[0]
+    })
+    console.log('nidie: ', queue)
+    const temp = queue.shift();
+    const dist = Object.values(temp)[0];
+    console.log('check: ', dist);
+    const vertex = Object.keys(temp)[0];
+    seen.push(temp);
+    const nodes = map[vertex];
+    const nodesVerb = nodes.map(n => Object.keys(n)[0]);
+    
+    nodesVerb.forEach(n => {
+      let isExisting = seen.filter(s => Object.keys(s)[0] === n).length > 0;
+      if (!isExisting) {
+        const currDist = dist + map[vertex].filter(e => Object.keys(e)[0] === n)[0][n];
+        if (currDist < distance[n]) {
+          const replaceObj = {};
+          replaceObj[n] = currDist;
+          queue.push(replaceObj);
+          parent[n] = vertex;
+          distance[n] = currDist;
+        }
+
+      }
+    });
   }
-  return res;
+  console.log('distance: ', distance);
+  console.log('parent: ', parent);
 }
 
-console.log(bfs(dict, 'a'));
+bfs(dict, 'a');
