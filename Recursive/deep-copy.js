@@ -1,22 +1,34 @@
-const deepCopy = (obj) => {
-  var res = {};
-  function copy(val) {
-    if (typeof val === 'object') {
-      Object.keys(val).forEach((currKey) => {
-        copy(currKey, val[currKey]);
-      });
-    } else {
-      res[key] = val;
-    }
-  }
-  copy(obj);
-  return res;
-}
+const deepCopy = (target) => {
+  const copyObjArr = [];
 
+  function copy(target) {
+    if (typeof target !== 'object' || !target) {
+      return target;
+    }
+    let i = 0;
+    // while (i < copyObjArr.length) {
+    //   if (copyObjArr[i].target === target) {
+    //     return copyObjArr[i].copyObjArr;
+    //   }
+    // }
+    let tempObj = Array.isArray(target) ? [] : {};
+
+    copyObjArr.push({ target: target, copyTarget: tempObj});
+
+    Object.keys(target).forEach(key => {
+      if (tempObj[key]) {
+        return;
+      }
+      tempObj[key] = copy(target[key]);
+    });
+    return tempObj;
+  }
+  return copy(target);
+}
 var test = {
   a: '1',
   b: {
-    b1: 21,
+    b1: [1, 2, 3],
     b2: 22,
     b3: 23,
   },
