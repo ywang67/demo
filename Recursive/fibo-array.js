@@ -19,3 +19,18 @@ const fibo = (val) => {
 }
 
 console.log(fibo(10));
+
+//dp
+const dp_fibo = (n) => {
+  const fibo = [];
+  fibo[0] = 1;
+  fibo[1] = 1;
+  let j = 2;
+  while (j < n) {
+    fibo[j] = fibo[i - 2] + fibo[i - 1];
+    j++;
+  };
+  return fibo;
+}
+
+console.log(fibo(10));
