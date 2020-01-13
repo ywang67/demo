@@ -3,12 +3,17 @@ function partial(fn) {
   return function() {
     const arr = [...args, ...Array.from(arguments)];
     fn(...arr);
-  }
+  };
 }
 
-var f = partial(function(a, b, c) {
-  var res = a + b + c;
-  console.log(res);
-}, 1, 2, 3);
+var f = partial(
+  function(a, b, c) {
+    var res = a + b + c;
+    console.log(res);
+  },
+  1,
+  2,
+  3
+);
 
 f(4);
